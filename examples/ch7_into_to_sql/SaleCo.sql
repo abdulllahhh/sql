@@ -1,13 +1,10 @@
-drop table if exists saleco.employee;
-drop table if exists saleco.emp;
-drop table if exists saleco.line;
-drop table if exists saleco.invoice;
-drop table if exists saleco.product;
-drop table if exists saleco.customer;
-drop table if exists saleco.vendor;
+-- for ms sql server
+
+create database	SaleCo	
+use SaleCo
 
 CREATE TABLE CUSTOMER (
-  CUS_CODE      INT PRIMARY KEY AUTO_INCREMENT,
+  CUS_CODE      INT PRIMARY KEY identity,
   CUS_LNAME     VARCHAR(15),
   CUS_FNAME     VARCHAR(15),
   CUS_INITIAL   VARCHAR(1),
@@ -29,7 +26,7 @@ INSERT INTO CUSTOMER(CUS_LNAME, CUS_FNAME, CUS_INITIAL, CUS_AREACODE, CUS_PHONE,
   ('Smith','Olette','K','615','297-3809','0');
 
 CREATE TABLE EMP (
-  EMP_NUM       INT PRIMARY KEY AUTO_INCREMENT,
+  EMP_NUM       INT identity(100,1) PRIMARY KEY  ,
   EMP_TITLE     VARCHAR(4),
   EMP_LNAME     VARCHAR(15),
   EMP_FNAME     VARCHAR(15),
@@ -40,27 +37,27 @@ CREATE TABLE EMP (
   EMP_PHONE     VARCHAR(8),
   EMP_MGR       INT
 );
-INSERT INTO EMP(EMP_NUM, EMP_TITLE, EMP_LNAME, EMP_FNAME, EMP_INITIAL, EMP_DOB, EMP_HIRE_DATE, EMP_AREACODE, EMP_PHONE, EMP_MGR) VALUES
-  ('100','Mr.','Kolmycz','George','D','1945-6-15','1985-3-15','615','324-5456',NULL),
-  ('101','Ms.','Lewis','Rhonda','G','1965-3-19','1986-4-25','615','324-4472','100'),
-  ('102','Mr.','VanDam','Rhett','','1958-11-14','1990-12-20','901','675-8993','100'),
-  ('103','Ms.','Jones','Anne','M','1974-10-16','1994-8-28','615','898-3456','100'),
-  ('104','Mr.','Lange','John','P','1971-11-8','1994-10-20','901','504-4430','105'),
-  ('105','Mr.','Williams','Robert','D','1975-3-14','1998-11-8','615','890-3220', NULL),
-  ('106','Mrs.','Smith','Jeanine','K','1968-2-12','1989-1-5','615','324-7883','105'),
-  ('107','Mr.','Diante','Jorge','D','1974-8-21','1994-7-2','615','890-4567','105'),
-  ('108','Mr.','Wiesenbach','Paul','R','1966-2-14','1992-11-18','615','897-4358',NULL),
-  ('109','Mr.','Smith','George','K','1961-6-18','1989-4-14','901','504-3339','108'),
-  ('110','Mrs.','Genkazi','Leighla','W','1970-5-19','1990-12-1','901','569-0093','108'),
-  ('111','Mr.','Washington','Rupert','E','1966-1-3','1993-6-21','615','890-4925','105'),
-  ('112','Mr.','Johnson','Edward','E','1961-5-14','1983-12-1','615','898-4387','100'),
-  ('113','Ms.','Smythe','Melanie','P','1970-9-15','1999-5-11','615','324-9006','105'),
-  ('114','Ms.','Brandon','Marie','G','1956-11-2','1979-11-15','901','882-0845','108'),
-  ('115','Mrs.','Saranda','Hermine','R','1972-7-25','1993-4-23','615','324-5505','105'),
-  ('116','Mr.','Smith','George','A','1965-11-8','1988-12-10','615','890-2984','108');
+INSERT INTO EMP(EMP_TITLE, EMP_LNAME, EMP_FNAME, EMP_INITIAL, EMP_DOB, EMP_HIRE_DATE, EMP_AREACODE, EMP_PHONE, EMP_MGR) VALUES
+  ('Mr.','Kolmycz','George','D','1945-6-15','1985-3-15','615','324-5456',NULL),
+  ('Ms.','Lewis','Rhonda','G','1965-3-19','1986-4-25','615','324-4472','100'),
+  ('Mr.','VanDam','Rhett','','1958-11-14','1990-12-20','901','675-8993','100'),
+  ('Ms.','Jones','Anne','M','1974-10-16','1994-8-28','615','898-3456','100'),
+  ('Mr.','Lange','John','P','1971-11-8','1994-10-20','901','504-4430','105'),
+  ('Mr.','Williams','Robert','D','1975-3-14','1998-11-8','615','890-3220', NULL),
+  ('Mrs.','Smith','Jeanine','K','1968-2-12','1989-1-5','615','324-7883','105'),
+  ('Mr.','Diante','Jorge','D','1974-8-21','1994-7-2','615','890-4567','105'),
+  ('Mr.','Wiesenbach','Paul','R','1966-2-14','1992-11-18','615','897-4358',NULL),
+  ('Mr.','Smith','George','K','1961-6-18','1989-4-14','901','504-3339','108'),
+  ('Mrs.','Genkazi','Leighla','W','1970-5-19','1990-12-1','901','569-0093','108'),
+  ('Mr.','Washington','Rupert','E','1966-1-3','1993-6-21','615','890-4925','105'),
+  ('Mr.','Johnson','Edward','E','1961-5-14','1983-12-1','615','898-4387','100'),
+  ('Ms.','Smythe','Melanie','P','1970-9-15','1999-5-11','615','324-9006','105'),
+  ('Ms.','Brandon','Marie','G','1956-11-2','1979-11-15','901','882-0845','108'),
+  ('Mrs.','Saranda','Hermine','R','1972-7-25','1993-4-23','615','324-5505','105'),
+  ('Mr.','Smith','George','A','1965-11-8','1988-12-10','615','890-2984','108');
 
 CREATE TABLE EMPLOYEE (
-  EMP_NUM       INT PRIMARY KEY AUTO_INCREMENT,
+  EMP_NUM       INT PRIMARY KEY identity,
   EMP_TITLE     VARCHAR(4),
   EMP_LNAME     VARCHAR(15),
   EMP_FNAME     VARCHAR(15),
@@ -113,7 +110,7 @@ INSERT INTO VENDOR(V_CODE, V_NAME, V_CONTACT, V_AREACODE, V_PHONE, V_STATE, V_OR
   ('25595','Rubicon Systems','Orton','904','456-0092','FL','Y');
 
 CREATE TABLE INVOICE (
-  INV_NUMBER  INT PRIMARY KEY AUTO_INCREMENT,
+  INV_NUMBER  INT PRIMARY KEY identity,
   CUS_CODE    INT,
   INV_DATE    DATETIME,
   FOREIGN KEY(CUS_CODE) REFERENCES CUSTOMER(CUS_CODE)
@@ -186,9 +183,5 @@ INSERT INTO LINE(INV_NUMBER, LINE_NUMBER, P_CODE, LINE_UNITS, LINE_PRICE) VALUES
   (8,'1','PVC23DRT','5','5.87'),
   (8,'2','WR3/TT3','3','119.95'),
   (8,'3','23109-HB','1','9.95');
-
-
-
-
 
 
